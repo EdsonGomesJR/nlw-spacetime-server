@@ -1,7 +1,5 @@
 import { FastifyInstance } from "fastify";
-import axios from 'axios'
-import { z } from "zod";
-import { prisma } from "../lib/prisma";
+
 import { randomUUID } from "node:crypto";
 import { extname,resolve } from "node:path";
 import { createWriteStream } from "node:fs";
@@ -42,7 +40,7 @@ export async function uploadRoutes(app:FastifyInstance) {
     const fullUrl = request.protocol.concat('://').concat(request.hostname)
     const fileUrl = new URL(`/uploads/${fileName}`, fullUrl).toString()
 
-    return {ok: true}
+    return {fileUrl}
   })
 
 }
